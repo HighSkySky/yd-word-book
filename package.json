@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "sanwu <highskysky97@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "yd": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
