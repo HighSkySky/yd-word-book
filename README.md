@@ -16,3 +16,7 @@ Options:
   -v, --version  output the version number
   -h, --help     output usage information
 ```
+
+# 功能点
+- 英译中
+- 多词查询
