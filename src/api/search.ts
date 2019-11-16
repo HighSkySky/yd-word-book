@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cookiesToString, saveCookies } from '../utils/cookie';
 
 const baseHeaders = {
   Accept:
@@ -15,10 +16,14 @@ const baseHeaders = {
 
 export const search = async (word: string) => {
   const requestUrl = `http://www.youdao.com/w/eng/${encodeURI(word)}`;
+  const cookiesString = await cookiesToString();
+  const headers = Object.assign({}, baseHeaders, { cookie: cookiesString });
 
   const response = await axios.get<string>(requestUrl, {
-    headers: baseHeaders
+    headers
   });
+  const cookieStrings = response.headers['set-cookie'] || [];
+  saveCookies(cookieStrings);
 
   return response;
 };

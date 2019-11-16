@@ -9,19 +9,18 @@ const program = new commander.Command();
 let useSubCommand = false;
 
 (() => {
-  let words: string[] = [];
   program
     .arguments('<word> [otherWords...]')
-    .action(async (word: string, otherWords?: string[]) => {
-      if (word) words.push(word);
-      if (otherWords) words = words.concat(otherWords);
-
-      if (!useSubCommand && words.length > 0) {
+    .action(async (word: string, otherWords: string[] = []) => {
+      if (!useSubCommand) {
         console.log(`🔍  Search word...`);
-        await toParallel(
-          words.map(w => () => searchWord(w)),
-          2
-        );
+        if (word) {
+          await searchWord(word);
+          await toParallel(
+            otherWords.map(w => () => searchWord(w)),
+            2
+          );
+        }
       }
     });
 })();
