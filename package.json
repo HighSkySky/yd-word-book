@@ -1,9 +1,13 @@
 {
   "name": "yd-word-book",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "author": "sanwu <highskysky97@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HighSkySky/yd-word-book"
+  },
   "bin": {
     "yd": "dist/index.js"
   },
