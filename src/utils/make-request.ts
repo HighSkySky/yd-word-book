@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { cookiesToString, saveCookies } from '../utils/cookie';
 
-const baseHeaders = {
+axios.defaults.headers = {
   Accept:
     'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
   'Accept-Encoding': 'gzip, deflate, br',
@@ -14,16 +14,18 @@ const baseHeaders = {
     'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Mobile Safari/537.36'
 };
 
-export const search = async (word: string) => {
-  const requestUrl = `http://www.youdao.com/w/eng/${encodeURI(word)}`;
+axios.interceptors.request.use(async config => {
   const cookiesString = await cookiesToString();
-  const headers = Object.assign({}, baseHeaders, { cookie: cookiesString });
+  const cookieStrings = config.headers['set-cookie'];
+  config.headers['set-cookie'] = [cookieStrings, cookiesString].join(';');
+  return config;
+});
 
-  const response = await axios.get<string>(requestUrl, {
-    headers
-  });
-  const cookieStrings = response.headers['set-cookie'] || [];
+axios.interceptors.response.use(async response => {
+  const { headers } = response;
+  const cookieStrings = headers['set-cookie'] || [];
   saveCookies(cookieStrings);
-
   return response;
-};
+});
+
+export const makeRequest = axios;

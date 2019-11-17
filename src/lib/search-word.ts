@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 import colors from 'colors';
 import checkChinese from 'is-chinese';
-import { search } from '../api/search';
+import * as api from '../api';
 
 const parseText = (html: string, isChinese: boolean) => {
   const texts = [];
@@ -45,8 +45,8 @@ const parseText = (html: string, isChinese: boolean) => {
 };
 
 export const searchWord = async (word: string) => {
-  const { data, config } = await search(word);
+  const { data, config } = await api.search(word);
   console.log(`${colors.green('success')} Get '${word}' translate`);
-  console.log(`${colors.blue('info')} Visit : ${config.url} to see more.`);
+  console.log(`${colors.blue('info')} Visit: '${config.url}' to see more.`);
   console.log(parseText(data, checkChinese(word)));
 };
