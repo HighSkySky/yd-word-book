@@ -9,7 +9,7 @@
     "url": "https://github.com/HighSkySky/yd-word-book"
   },
   "bin": {
-    "yd": "dist/index.js"
+    "yd": "dist/command/yd.js"
   },
   "scripts": {
     "build": "tsc",
@@ -41,6 +41,7 @@
     "@types/cheerio": "^0.22.14",
     "@types/cookie": "^0.3.3",
     "@types/mkdirp": "^0.5.2",
+    "@types/node": "^12.12.8",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
     "eslint": "^6.6.0",

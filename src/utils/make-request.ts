@@ -8,16 +8,20 @@ axios.defaults.headers = {
   'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
   Connection: 'keep-alive',
   'Sec-Fetch-Mode': 'navigate',
-  'Sec-Fetch-Site': 'none',
+  'Sec-Fetch-Site': 'cross-site',
   'Upgrade-Insecure-Requests': 1,
   'User-Agent':
-    'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Mobile Safari/537.36'
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  Host: 'www.youdao.com'
 };
 
 axios.interceptors.request.use(async config => {
   const cookiesString = await cookiesToString();
-  const cookieStrings = config.headers['set-cookie'];
-  config.headers['set-cookie'] = [cookieStrings, cookiesString].join(';');
+  const cookie = [cookiesString];
+  const cookieStrings = config.headers['Set-Cookie'];
+  if (cookieStrings) cookie.push(cookieStrings);
+  config.headers['Cookie'] = cookie.join(';');
+  if (!config.headers.Referer) config.headers.Referer = config.url;
   return config;
 });
 
