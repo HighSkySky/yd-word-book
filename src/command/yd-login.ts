@@ -1,8 +1,8 @@
 import commander from 'commander';
-import colors from 'colors';
 import * as readline from 'readline';
 import { hex_md5 } from '../lib/logincom';
 import { login } from '../api';
+import log from '../lib/log';
 
 const program = new commander.Command();
 
@@ -27,10 +27,8 @@ program.action(async () => {
 
   const { headers } = await login({ username, password: hex_md5(password) });
   if (!headers['set-cookie']) {
-    console.log(
-      `${colors.red(
-        'error'
-      )} login fail, pleace check your email or pwaaword current and try again`
+    log.error(
+      `login fail, pleace check your email or pwaaword current and try again`
     );
   }
 });

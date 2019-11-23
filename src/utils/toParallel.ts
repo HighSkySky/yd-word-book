@@ -29,6 +29,10 @@ export async function toParallel(
     }
   }
 
+  if (asyncFuncList.length === 0) {
+    return Promise.resolve([]);
+  }
+
   if (limitNum === undefined) {
     return Promise.all(asyncFuncList.map(func => func()));
   }
