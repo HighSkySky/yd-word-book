@@ -1,6 +1,6 @@
 import { stringify } from 'querystring';
 import checkChinese from 'is-chinese';
-import { makeRequest } from './utils/make-request';
+import { makeRequest } from './lib/make-request';
 
 export const search = async (word: string) => {
   return makeRequest(`http://www.youdao.com/w/eng/${encodeURI(word)}`);

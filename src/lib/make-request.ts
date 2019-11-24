@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { cookiesToString, saveCookies } from '../utils/cookie';
+import { cookiesToString, saveCookies } from './cookie';
 
 axios.defaults.headers = {
   Accept:

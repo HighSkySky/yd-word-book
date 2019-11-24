@@ -42,8 +42,10 @@ const parseText = ($: CheerioStatic, word: string) => {
 };
 
 const saveWord = async ($: CheerioStatic, word: string) => {
-  const isAdded = !$('.add_to_wordbook');
-  if (isAdded) return;
+  if ($('.login').html())
+    return log.error(`Please login before add '${word}' to word book.`);
+  if (!$('.add_to_wordbook').html())
+    return log.info(`Word '${word} is already in word book.'`);
   const { data } = await api.save(word);
   if (data.message === 'adddone') {
     log.success(`Add '${word}' to word book.`);
@@ -57,6 +59,6 @@ export const searchWord = async (word: string, isSave: boolean) => {
   });
   log.success(`Get '${word}' translate.`);
   if (isSave) await saveWord($, word);
-  log.info(`Visit: '${config.url}' to see more.`);
+  log.info(`Visit '${config.url}' to see more.`);
   log(parseText($, word));
 };
