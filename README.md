@@ -20,7 +20,7 @@ Commands:
   help [cmd]     display help for [cmd]
 ```
 
-# 功能点
+## 功能点
 - 英译中
 - 中译英
 - 多词查询

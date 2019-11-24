@@ -1,6 +1,6 @@
 {
   "name": "yd-word-book",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "author": "sanwu <highskysky97@gmail.com>",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "types:check": "tsc --noEmit",
-    "format": "prettier --write 'src/**/*.ts'"
+    "format": "prettier --write 'src/**/*.ts'",
+    "publish": "rm -rf ./dist && tsc && npm publish"
   },
   "husky": {
     "hooks": {
