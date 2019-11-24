@@ -5,7 +5,7 @@ import commander from 'commander';
 const program = new commander.Command();
 
 program
-  .version('0.0.2', '-v, --version', 'output the version number')
+  .version('0.0.3', '-v, --version', 'output the version number')
   .command('search', "search words's translate", { isDefault: true })
   .command('login', 'login netease email accout')
   .parse(process.argv);
