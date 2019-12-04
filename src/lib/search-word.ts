@@ -44,8 +44,8 @@ const parseText = ($: CheerioStatic, word: string) => {
 const saveWord = async ($: CheerioStatic, word: string) => {
   if ($('.login').html())
     return log.error(`Please login before add '${word}' to word book.`);
-  if (!$('.add_to_wordbook').html())
-    return log.info(`Word '${word} is already in word book.'`);
+  // if (!$('.add_to_wordbook').html())
+  //   return log.info(`Word '${word} is already in word book.'`);
   const { data } = await api.save(word);
   if (data.message === 'adddone') {
     log.success(`Add '${word}' to word book.`);
