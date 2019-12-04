@@ -9,7 +9,7 @@ let isSave = false;
 // let isLocalSave = false;
 
 program.option(
-  '-s --save',
+  '-s, --save',
   'save word in netease word book',
   () => (isSave = true)
 );

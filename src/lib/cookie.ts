@@ -5,7 +5,7 @@ import cookieUtils from 'cookie';
 import mkdirp from 'mkdirp';
 
 export interface CustomCookies {
-  [key: string]: string;
+  [key: string]: string | undefined;
 }
 
 const cookieCachePath = path.resolve(__dirname, '../..', '.cache/cookie');
@@ -20,7 +20,12 @@ export const parseCookies = (cookieStrings: string[]): CustomCookies =>
     return customCookies;
   }, {} as CustomCookies);
 
-export const { loadCookies, saveCookies } = (() => {
+export const {
+  loadCookies,
+  saveCookies,
+  removeCookies,
+  cleanCookies
+} = (() => {
   let cookies: CustomCookies;
 
   const load = async () => {
@@ -47,9 +52,23 @@ export const { loadCookies, saveCookies } = (() => {
     await promisify(fs.writeFile)(cookieCache, JSON.stringify(cookies));
   };
 
+  const remove = async (cookieNames: string[]) => {
+    cookieNames.forEach(name => {
+      cookies[name] = undefined;
+    });
+    await promisify(fs.writeFile)(cookieCache, JSON.stringify(cookies));
+  };
+
+  const clean = async () => {
+    cookies = {};
+    await promisify(fs.writeFile)(cookieCache, JSON.stringify(cookies));
+  };
+
   return {
     loadCookies: load,
-    saveCookies: save
+    saveCookies: save,
+    removeCookies: remove,
+    cleanCookies: clean
   };
 })();
 

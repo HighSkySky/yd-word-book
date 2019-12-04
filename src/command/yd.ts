@@ -8,4 +8,5 @@ program
   .version('0.0.3', '-v, --version', 'output the version number')
   .command('search', "search words's translate", { isDefault: true })
   .command('login', 'login netease email accout')
+  .command('cookie', 'manage local cookie')
   .parse(process.argv);
