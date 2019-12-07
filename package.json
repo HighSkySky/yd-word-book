@@ -14,13 +14,14 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "types:check": "tsc --noEmit",
+    "check": "tsc --noEmit",
     "format": "prettier --write 'src/**/*.ts'",
-    "publish": "rm -rf ./dist && tsc && npm publish"
+    "clean": "rm -rf dist",
+    "prepublish": "npm run clean && npm run build"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run types:check && lint-staged"
+      "pre-commit": "npm run check && lint-staged"
     }
   },
   "lint-staged": {
