@@ -46,6 +46,11 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@tql/utils@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/@tql/utils/-/utils-0.0.2.tgz#cbbd8808a5c83debeb1a2ca5e770f331381fc50b"
+  integrity sha512-0m+o9O17yBDZjBJcjcmd9Dah3hoJtl/sOdxQ1483dqbHMmkcLx8ZhBlRahNhUQklww6jdlCjnMPwjXsUAhNvXw==
+
 "@types/cheerio@^0.22.14":
   version "0.22.14"
   resolved "https://registry.npm.taobao.org/@types/cheerio/download/@types/cheerio-0.22.14.tgz#d150889891e7db892c6a0b16bd5583cc70b3fc44"

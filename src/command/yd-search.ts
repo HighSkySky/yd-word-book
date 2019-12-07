@@ -1,6 +1,6 @@
 import commander from 'commander';
+import { toParallel } from '@tql/utils';
 import { searchWord } from '../lib/search-word';
-import { toParallel } from '../utils/toParallel';
 import log from '../lib/log';
 
 const program = new commander.Command();
